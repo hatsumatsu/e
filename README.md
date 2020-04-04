@@ -7,7 +7,23 @@ ________/\/\_________________
 _______/\/\/\/\/\/\__________
 _____________________________
 `````
-#E
 
-Tiny DOM manipulation helper
-with a familiar fluent API
+Tiny DOM manipulation helper with a familiar fluent API.
+
+## Install
+
+`npm install @supersrcture/e`
+
+
+## Usage
+
+`````
+...
+`````
+
+## API
+
+
+
+
+## FAQs
