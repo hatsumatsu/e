@@ -1,4 +1,7 @@
 {
 	"name": "@superstructure/e",
-	"version": "1.0.0"
+	"version": "1.0.0",
+	"description": "Tiny DOM manipulation helper with a familiar fluent API",
+  	"license": "MIT",
+  	"repository": "hatsumatsu/e",	
 }

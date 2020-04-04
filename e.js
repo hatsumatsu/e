@@ -10,7 +10,7 @@ _____________________________
 
 E
 
-Tiny DOM Manipulation helper
+Tiny DOM manipulation helper
 with a familiar fluent API
  * 
  */
