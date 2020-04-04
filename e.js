@@ -164,9 +164,6 @@ export default class E {
     return this;
   }
 
-  /**
-   * Manipulating
-   */
   prepend(children) {
     if (!this.elements.length) {
       return this;
