@@ -19,7 +19,7 @@ export default class E {
   constructor(target) {
     /**
      * new E()
-     * creates an empty NodeList
+     * creates an empty collection
      */
     if (!target) {
       this.elements = [];
@@ -363,7 +363,7 @@ export default class E {
   }
 
   /**
-   * CSS
+   * Get elements
    */
   get(index) {
     if (!this.elements.length) {

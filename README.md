@@ -18,9 +18,13 @@ Tiny DOM manipulation helper with a familiar fluent API.
 ## Usage
 
 `````
-new  E( '<div>' )
-	.setAttr( 'data-module-role', 'title' )
-	.setText( 'Groovy 🎷' )
-	.addClass( 'active' )
-	.appendTo( 'body' )
+new E( '<div>' )
+  .setAttr( 'data-module-role', 'title' )
+  .setText( 'Groovy 🎷' )
+  .addClass( 'active' )
+  .appendTo( 'body' )
 `````
+
+
+
+
