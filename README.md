@@ -12,18 +12,15 @@ Tiny DOM manipulation helper with a familiar fluent API.
 
 ## Install
 
-`npm install @supersrcture/e`
+`npm install @superstructure.net/e`
 
 
 ## Usage
 
 `````
-...
+new  E( '<div>' )
+	.setAttr( 'data-module-role', 'title' )
+	.setText( 'Groovy 🎷' )
+	.addClass( 'active' )
+	.appendTo( 'body' )
 `````
-
-## API
-
-
-
-
-## FAQs
