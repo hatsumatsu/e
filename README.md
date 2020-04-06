@@ -21,6 +21,13 @@ Tiny DOM manipulation helper with a familiar fluent API.
 `````
 import E from @superstructure.net/e;
 
+// create collection
+new E( '.my-selector' );
+new E( '[data-module-role="button"]' );
+new E( elementOrNodeList );
+new E( '<div>' );
+
+// create collection and do stuff
 new E( '<div>' )
   .setAttr( 'data-module-role', 'title' )
   .setText( 'Groovy 🎷' )
@@ -90,7 +97,7 @@ Apply styles passed as a key-value-based object. Like `{fontSize:'2rem',color:'y
 Get collection entry at `index`. Returns all collection entries if no index is passed return.
 
 
-## Q&A
+### Q&A
 
 #####  This looks a lot like JQ**** ...
 Don’t be silly, no one is using JQuery these days, right? 😇
