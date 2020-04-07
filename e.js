@@ -344,7 +344,6 @@ export default class E {
    * CSS
    */
   css(styles) {
-    console.log("css()", this.elements);
     if (!this.elements.length) {
       return this;
     }
@@ -357,6 +356,21 @@ export default class E {
       for (const property in styles) {
         element.style[property] = styles[property];
       }
+    });
+
+    return this;
+  }
+
+  /**
+   * Helper
+   */
+  repaint() {
+    if (!this.elements.length) {
+      return this;
+    }
+
+    this.elements.forEach((element) => {
+      element.offsetHeight;
     });
 
     return this;
