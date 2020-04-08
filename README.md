@@ -94,10 +94,10 @@ Get inner HTML of the first collection entry;
 Apply styles passed as a key-value-based object. Like `{fontSize:'2rem',color:'yellow'}`.
 
 ##### `nodes(index)`
-Get collection entry at `index`. Returns all collection entries if no index is passed return.
+Get collection entry at `index`. Returns all collection entries if no index is passed.
 
 ##### `isEmpty()`
-Return `true` if the collection is empty.
+Returns `true` if the collection is empty.
 
 
 ### Q&A

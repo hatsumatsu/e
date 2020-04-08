@@ -132,7 +132,7 @@ export default class E {
     }
 
     this._nodes.forEach((node) => {
-      children.get().forEach((child) => {
+      children.nodes().forEach((child) => {
         node.append(child);
       });
     });
@@ -156,7 +156,7 @@ export default class E {
     }
 
     this._nodes.forEach((node) => {
-      parents.get().forEach((parent) => {
+      parents.nodes().forEach((parent) => {
         parent.append(node);
       });
     });
@@ -180,7 +180,7 @@ export default class E {
     }
 
     this._nodes.forEach((node) => {
-      children.get().forEach((child) => {
+      children.nodes().forEach((child) => {
         node.prepend(child);
       });
     });
@@ -204,7 +204,7 @@ export default class E {
     }
 
     this._nodes.forEach((node) => {
-      parents.get().forEach((parent) => {
+      parents.nodes().forEach((parent) => {
         parent.prepend(node);
       });
     });
