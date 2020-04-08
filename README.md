@@ -49,16 +49,16 @@ Get children of the current collection matching `selector`.
 Gets the closest parent matching `selector`.
 
 ##### `append(selector|Element|NodeList|E)`
-Append elements to the current collection.
+Append nodes to the current collection.
 
 ##### `appendTo(selector|Element|NodeList|E)`
-Append the current collection to the passed elements.
+Append the current collection to the passed nodes.
 
 #####  `prepend(selector|Element|NodeList|E)`
-Prepend elements to the current collection.
+Prepend nodes to the current collection.
 
 ##### `prependTo(selector|Element|NodeList|E)`
-Prepend the current collection to the passed elements.
+Prepend the current collection to the passed nodes.
 
 ##### `clone()`
 Clone the collection.
@@ -93,8 +93,11 @@ Get inner HTML of the first collection entry;
 ##### `css(syles)`
 Apply styles passed as a key-value-based object. Like `{fontSize:'2rem',color:'yellow'}`.
 
-##### `get(index)`
+##### `nodes(index)`
 Get collection entry at `index`. Returns all collection entries if no index is passed return.
+
+##### `isEmpty()`
+Return `true` if the collection is empty.
 
 
 ### Q&A

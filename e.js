@@ -22,7 +22,7 @@ export default class E {
      * creates an empty collection
      */
     if (!target) {
-      this.elements = [];
+      this.nodes = [];
     }
 
     /**
@@ -37,21 +37,21 @@ export default class E {
         target.charAt(0) === "<" &&
         target.charAt(target.length - 1) === ">"
       ) {
-        this.elements = [document.createElement(target.replace(/[<>]/gi, ""))];
+        this.nodes = [document.createElement(target.replace(/[<>]/gi, ""))];
       } else {
-        this.elements = document.querySelectorAll(target);
+        this.nodes = document.querySelectorAll(target);
       }
     }
 
     /**
      * new E( {Element|NodeList} )
-     * creates a collection containing the passed elements
+     * creates a collection containing the passed nodes
      */
     if (typeof target === "object") {
       if (!target.length) {
-        this.elements = [target];
+        this.nodes = [target];
       } else {
-        this.elements = target;
+        this.nodes = target;
       }
     }
 
@@ -62,7 +62,7 @@ export default class E {
    * Traversing
    */
   filter(selector) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -72,25 +72,25 @@ export default class E {
 
     if (typeof selector === "string") {
       return new E(
-        Array.from(this.elements).filter((element) => {
-          return element.matches(selector);
+        Array.from(this.nodes).filter((node) => {
+          return node.matches(selector);
         })
       );
     }
 
     if (typeof selector === "number") {
-      if (!this.elements[selector]) {
+      if (!this.nodes[selector]) {
         return new E();
       }
 
-      return new E(this.elements[selector]);
+      return new E(this.nodes[selector]);
     }
 
     return this;
   }
 
   find(selector) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -98,11 +98,11 @@ export default class E {
       return this;
     }
 
-    return new E(this.elements[0].querySelectorAll(selector));
+    return new E(this.nodes[0].querySelectorAll(selector));
   }
 
   closest(selector) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -110,14 +110,14 @@ export default class E {
       return this;
     }
 
-    return new E(this.elements[0].closest(selector));
+    return new E(this.nodes[0].closest(selector));
   }
 
   /**
    * Manipulating
    */
   append(children) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -131,9 +131,9 @@ export default class E {
       return this;
     }
 
-    this.elements.forEach((element) => {
+    this.nodes.forEach((node) => {
       children.get().forEach((child) => {
-        element.append(child);
+        node.append(child);
       });
     });
 
@@ -141,7 +141,7 @@ export default class E {
   }
 
   appendTo(parents) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -155,9 +155,9 @@ export default class E {
       return this;
     }
 
-    this.elements.forEach((element) => {
+    this.nodes.forEach((node) => {
       parents.get().forEach((parent) => {
-        parent.append(element);
+        parent.append(node);
       });
     });
 
@@ -165,7 +165,7 @@ export default class E {
   }
 
   prepend(children) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -179,9 +179,9 @@ export default class E {
       return this;
     }
 
-    this.elements.forEach((element) => {
+    this.nodes.forEach((node) => {
       children.get().forEach((child) => {
-        element.prepend(child);
+        node.prepend(child);
       });
     });
 
@@ -189,7 +189,7 @@ export default class E {
   }
 
   prependTo(parents) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -203,9 +203,9 @@ export default class E {
       return this;
     }
 
-    this.elements.forEach((element) => {
+    this.nodes.forEach((node) => {
       parents.get().forEach((parent) => {
-        parent.prepend(element);
+        parent.prepend(node);
       });
     });
 
@@ -213,26 +213,26 @@ export default class E {
   }
 
   clone() {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
     let clones = [];
 
-    this.elements.forEach((element) => {
-      clones.push(element.cloneNode(true));
+    this.nodes.forEach((node) => {
+      clones.push(node.cloneNode(true));
     });
 
     return new E(clones);
   }
 
   remove() {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.parentNode.removeChild(element);
+    this.nodes.forEach((node) => {
+      node.parentNode.removeChild(node);
     });
   }
 
@@ -240,24 +240,24 @@ export default class E {
    * Classes
    */
   addClass(className) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.classList.add(className);
+    this.nodes.forEach((node) => {
+      node.classList.add(className);
     });
 
     return this;
   }
 
   removeClass(className) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.classList.remove(className);
+    this.nodes.forEach((node) => {
+      node.classList.remove(className);
     });
 
     return this;
@@ -267,7 +267,7 @@ export default class E {
    * Attributes
    */
   setAttr(key, value, namespace) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -275,15 +275,15 @@ export default class E {
       key = "data-" + namespace + "-" + key;
     }
 
-    this.elements.forEach((element) => {
-      element.setAttribute(key, value);
+    this.nodes.forEach((node) => {
+      node.setAttribute(key, value);
     });
 
     return this;
   }
 
   getAttr(key, namespace) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -291,60 +291,60 @@ export default class E {
       key = "data-" + namespace + "-" + key;
     }
 
-    return this.elements[0].getAttribute(key);
+    return this.nodes[0].getAttribute(key);
   }
 
   /**
    * Text
    */
   setText(text) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.textContent = text;
+    this.nodes.forEach((node) => {
+      node.textContent = text;
     });
 
     return this;
   }
 
   getText() {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    return this.elements[0].textContent;
+    return this.nodes[0].textContent;
   }
 
   /**
    * HTML
    */
   setHTML(html) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.innerHTML = html;
+    this.nodes.forEach((node) => {
+      node.innerHTML = html;
     });
 
     return this;
   }
 
   getHTML() {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    return this.elements[0].innerHTML;
+    return this.nodes[0].innerHTML;
   }
 
   /**
    * CSS
    */
   css(styles) {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
@@ -352,9 +352,9 @@ export default class E {
       return this;
     }
 
-    this.elements.forEach((element) => {
+    this.nodes.forEach((node) => {
       for (const property in styles) {
-        element.style[property] = styles[property];
+        node.style[property] = styles[property];
       }
     });
 
@@ -365,29 +365,38 @@ export default class E {
    * Helper
    */
   repaint() {
-    if (!this.elements.length) {
+    if (!this.nodes.length) {
       return this;
     }
 
-    this.elements.forEach((element) => {
-      element.offsetHeight;
+    this.nodes.forEach((node) => {
+      node.offsetHeight;
     });
 
     return this;
   }
 
+  isEmpty() {
+    if (!this.nodes.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   /**
-   * Get elements
+   * Get nodes
    */
-  get(index) {
-    if (!this.elements.length) {
+  nodes(index) {
+    if (!this.nodes.length) {
       return this;
     }
 
     if (index !== undefined) {
-      return this.elements[index];
+      return this.nodes[index];
     } else {
-      return this.elements;
+      return this.nodes;
     }
   }
 }
