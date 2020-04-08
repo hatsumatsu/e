@@ -22,7 +22,7 @@ export default class E {
      * creates an empty collection
      */
     if (!target) {
-      this.nodes = [];
+      this._nodes = [];
     }
 
     /**
@@ -37,9 +37,9 @@ export default class E {
         target.charAt(0) === "<" &&
         target.charAt(target.length - 1) === ">"
       ) {
-        this.nodes = [document.createElement(target.replace(/[<>]/gi, ""))];
+        this._nodes = [document.createElement(target.replace(/[<>]/gi, ""))];
       } else {
-        this.nodes = document.querySelectorAll(target);
+        this._nodes = document.querySelectorAll(target);
       }
     }
 
@@ -49,9 +49,9 @@ export default class E {
      */
     if (typeof target === "object") {
       if (!target.length) {
-        this.nodes = [target];
+        this._nodes = [target];
       } else {
-        this.nodes = target;
+        this._nodes = target;
       }
     }
 
@@ -62,7 +62,7 @@ export default class E {
    * Traversing
    */
   filter(selector) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -72,25 +72,25 @@ export default class E {
 
     if (typeof selector === "string") {
       return new E(
-        Array.from(this.nodes).filter((node) => {
+        Array.from(this._nodes).filter((node) => {
           return node.matches(selector);
         })
       );
     }
 
     if (typeof selector === "number") {
-      if (!this.nodes[selector]) {
+      if (!this._nodes[selector]) {
         return new E();
       }
 
-      return new E(this.nodes[selector]);
+      return new E(this._nodes[selector]);
     }
 
     return this;
   }
 
   find(selector) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -98,11 +98,11 @@ export default class E {
       return this;
     }
 
-    return new E(this.nodes[0].querySelectorAll(selector));
+    return new E(this._nodes[0].querySelectorAll(selector));
   }
 
   closest(selector) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -110,14 +110,14 @@ export default class E {
       return this;
     }
 
-    return new E(this.nodes[0].closest(selector));
+    return new E(this._nodes[0].closest(selector));
   }
 
   /**
    * Manipulating
    */
   append(children) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -131,7 +131,7 @@ export default class E {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       children.get().forEach((child) => {
         node.append(child);
       });
@@ -141,7 +141,7 @@ export default class E {
   }
 
   appendTo(parents) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -155,7 +155,7 @@ export default class E {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       parents.get().forEach((parent) => {
         parent.append(node);
       });
@@ -165,7 +165,7 @@ export default class E {
   }
 
   prepend(children) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -179,7 +179,7 @@ export default class E {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       children.get().forEach((child) => {
         node.prepend(child);
       });
@@ -189,7 +189,7 @@ export default class E {
   }
 
   prependTo(parents) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -203,7 +203,7 @@ export default class E {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       parents.get().forEach((parent) => {
         parent.prepend(node);
       });
@@ -213,13 +213,13 @@ export default class E {
   }
 
   clone() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
     let clones = [];
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       clones.push(node.cloneNode(true));
     });
 
@@ -227,11 +227,11 @@ export default class E {
   }
 
   remove() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.parentNode.removeChild(node);
     });
   }
@@ -240,11 +240,11 @@ export default class E {
    * Classes
    */
   addClass(className) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.classList.add(className);
     });
 
@@ -252,11 +252,11 @@ export default class E {
   }
 
   removeClass(className) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.classList.remove(className);
     });
 
@@ -267,7 +267,7 @@ export default class E {
    * Attributes
    */
   setAttr(key, value, namespace) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -275,7 +275,7 @@ export default class E {
       key = "data-" + namespace + "-" + key;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.setAttribute(key, value);
     });
 
@@ -283,7 +283,7 @@ export default class E {
   }
 
   getAttr(key, namespace) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -291,18 +291,18 @@ export default class E {
       key = "data-" + namespace + "-" + key;
     }
 
-    return this.nodes[0].getAttribute(key);
+    return this._nodes[0].getAttribute(key);
   }
 
   /**
    * Text
    */
   setText(text) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.textContent = text;
     });
 
@@ -310,22 +310,22 @@ export default class E {
   }
 
   getText() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    return this.nodes[0].textContent;
+    return this._nodes[0].textContent;
   }
 
   /**
    * HTML
    */
   setHTML(html) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.innerHTML = html;
     });
 
@@ -333,18 +333,18 @@ export default class E {
   }
 
   getHTML() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    return this.nodes[0].innerHTML;
+    return this._nodes[0].innerHTML;
   }
 
   /**
    * CSS
    */
   css(styles) {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
@@ -352,7 +352,7 @@ export default class E {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       for (const property in styles) {
         node.style[property] = styles[property];
       }
@@ -365,11 +365,11 @@ export default class E {
    * Helper
    */
   repaint() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return this;
     }
 
-    this.nodes.forEach((node) => {
+    this._nodes.forEach((node) => {
       node.offsetHeight;
     });
 
@@ -377,7 +377,7 @@ export default class E {
   }
 
   isEmpty() {
-    if (!this.nodes.length) {
+    if (!this._nodes.length) {
       return true;
     } else {
       return false;
@@ -389,14 +389,14 @@ export default class E {
    * Get nodes
    */
   nodes(index) {
-    if (!this.nodes.length) {
-      return this;
+    if (!this._nodes.length) {
+      return [];
     }
 
     if (index !== undefined) {
-      return this.nodes[index];
+      return this._nodes[index];
     } else {
-      return this.nodes;
+      return this._nodes;
     }
   }
 }
