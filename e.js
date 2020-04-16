@@ -48,7 +48,7 @@ export default class E {
      * creates a collection containing the passed nodes
      */
     if (typeof target === "object") {
-      if (!target.length) {
+      if ( target.length === undefined ) {
         this._nodes = [target];
       } else {
         this._nodes = target;
