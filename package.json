@@ -1,6 +1,6 @@
 {
 	"name": "@superstructure.net/e",
-	"version": "1.2.3",
+	"version": "1.2.4",
 	"main": "e.js",
 	"description": "Tiny DOM manipulation helper with a familiar fluent API",
   	"license": "MIT",

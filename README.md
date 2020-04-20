@@ -93,7 +93,7 @@ Get inner HTML of the first collection entry;
 ##### `css(syles)`
 Apply styles passed as a key-value-based object. Like `{fontSize:'2rem',color:'yellow'}`.
 
-##### `nodes(index)`
+##### `nodes(index)` / `n(index)` / `get(index)`
 Get collection entry at `index`. Returns all collection entries if no index is passed.
 
 ##### `isEmpty()`

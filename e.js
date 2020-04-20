@@ -399,4 +399,12 @@ export default class E {
       return this._nodes;
     }
   }
+
+  n( index ) {
+    return this.nodes( index );
+  }
+
+  get( index ) {
+    return this.nodes( index );
+  }  
 }
