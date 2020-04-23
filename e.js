@@ -48,7 +48,7 @@ export default class E {
      * creates a collection containing the passed nodes
      */
     if (typeof target === "object") {
-      if ( target.length === undefined ) {
+      if (target.length === undefined) {
         this._nodes = [target];
       } else {
         this._nodes = target;
@@ -244,6 +244,10 @@ export default class E {
       return this;
     }
 
+    if (!className) {
+      return this;
+    }
+
     this._nodes.forEach((node) => {
       node.classList.add(className);
     });
@@ -256,8 +260,32 @@ export default class E {
       return this;
     }
 
+    if (!className) {
+      return this;
+    }
+
     this._nodes.forEach((node) => {
       node.classList.remove(className);
+    });
+
+    return this;
+  }
+
+  toggleClass(className) {
+    if (!this._nodes.length) {
+      return this;
+    }
+
+    if (!className) {
+      return this;
+    }
+
+    this._nodes.forEach((node) => {
+      if (node.classList.contains(className)) {
+        node.classList.remove(className);
+      } else {
+        node.classList.add(className);
+      }
     });
 
     return this;
@@ -268,6 +296,10 @@ export default class E {
    */
   setAttr(key, value, namespace) {
     if (!this._nodes.length) {
+      return this;
+    }
+
+    if (!key || !value) {
       return this;
     }
 
@@ -287,11 +319,39 @@ export default class E {
       return this;
     }
 
+    if (!key) {
+      return null;
+    }
+
     if (namespace) {
       key = "data-" + namespace + "-" + key;
     }
 
     return this._nodes[0].getAttribute(key);
+  }
+
+  toggleAttr(key, values = [], namespace) {
+    if (!this._nodes.length) {
+      return this;
+    }
+
+    if (!values || !values.length || values.length !== 2) {
+      return this;
+    }
+
+    if (namespace) {
+      key = "data-" + namespace + "-" + key;
+    }
+
+    this._nodes.forEach((node) => {
+      if (node.getAttribute(key) === values[1]) {
+        node.setAttribute(key, values[0]);
+      } else {
+        node.setAttribute(key, values[1]);
+      }
+    });
+
+    return this;
   }
 
   /**
@@ -384,7 +444,6 @@ export default class E {
     }
   }
 
-
   /**
    * Get nodes
    */
@@ -400,11 +459,11 @@ export default class E {
     }
   }
 
-  n( index ) {
-    return this.nodes( index );
+  n(index) {
+    return this.nodes(index);
   }
 
-  get( index ) {
-    return this.nodes( index );
-  }  
+  get(index) {
+    return this.nodes(index);
+  }
 }

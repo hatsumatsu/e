@@ -72,11 +72,19 @@ Add `class` to the collection.
 ##### `removeClass(class)`
 Remove `class` from the collection.
 
+##### `toggleClass(class)`
+Toggle `class` on the collection.
+
 ##### `setAttr(key, value [,namespace])`
 Set attribute `key` to `value`. If `namespace` is passed the key used is `data-{namespace}-{key}`.
 
 ##### `getAttr(key [,namespace])`
 Get attribute value of `key`. If `namespace` is passed the key used is `data-{namespace}-{key}`.
+
+##### `toggleAttr(key, values [,namespace])`
+Toggle attribute `key` between `values`. If `namespace` is passed the key used is `data-{namespace}-{key}`.
+`values` must be an array containing exactly two strings.
+
 
 ##### `setText(text)`
 Set text content of the first collection entry;
@@ -99,6 +107,8 @@ Get collection entry at `index`. Returns all collection entries if no index is p
 ##### `isEmpty()`
 Returns `true` if the collection is empty.
 
+##### `repaint()`
+Force repaint on colection entries.
 
 ### Q&A
 
