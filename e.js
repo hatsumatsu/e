@@ -128,11 +128,11 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            children.nodes().forEach((child) => {
-                node.append(child);
-            });
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            for (let j = 0; j < children.nodes().length; j++) {
+                this._nodes[i].append(children.nodes(j));
+            }
+        }
 
         return this;
     }
@@ -152,11 +152,11 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            parents.nodes().forEach((parent) => {
-                parent.append(node);
-            });
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            for (let j = 0; j < parents.nodes().length; j++) {
+                parents.nodes(j).append(this._nodes[i]);
+            }
+        }
 
         return this;
     }
@@ -176,11 +176,11 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            children.nodes().forEach((child) => {
-                node.prepend(child);
-            });
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            for (let j = 0; j < children.nodes().length; j++) {
+                this._nodes[i].prepend(children.nodes(j));
+            }
+        }
 
         return this;
     }
@@ -200,11 +200,11 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            parents.nodes().forEach((parent) => {
-                parent.prepend(node);
-            });
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            for (let j = 0; j < parents.nodes().length; j++) {
+                parents.nodes(j).prepend(this._nodes[i]);
+            }
+        }
 
         return this;
     }
@@ -216,9 +216,9 @@ export default class E {
 
         let clones = [];
 
-        this._nodes.forEach((node) => {
-            clones.push(node.cloneNode(true));
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            clones.push(this._nodes[i].cloneNode(true));
+        }
 
         return new E(clones);
     }
@@ -228,9 +228,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.parentNode.removeChild(node);
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].parentNode.removeChild(this._nodes[i]);
+        }
     }
 
     /**
@@ -245,9 +245,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.classList.add(className);
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].classList.add(className);
+        }
 
         return this;
     }
@@ -261,9 +261,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.classList.remove(className);
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].classList.remove(className);
+        }
 
         return this;
     }
@@ -277,13 +277,13 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            if (node.classList.contains(className)) {
-                node.classList.remove(className);
+        for (let i = 0; i < this._nodes.length; i++) {
+            if (this._nodes[i].classList.contains(className)) {
+                this._nodes[i].classList.remove(className);
             } else {
-                node.classList.add(className);
+                this._nodes[i].classList.add(className);
             }
-        });
+        }
 
         return this;
     }
@@ -304,9 +304,9 @@ export default class E {
             key = 'data-' + namespace + '-' + key;
         }
 
-        this._nodes.forEach((node) => {
-            node.setAttribute(key, value);
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].setAttribute(key, value);
+        }
 
         return this;
     }
@@ -340,13 +340,13 @@ export default class E {
             key = 'data-' + namespace + '-' + key;
         }
 
-        this._nodes.forEach((node) => {
-            if (node.getAttribute(key) === values[1]) {
-                node.setAttribute(key, values[0]);
+        for (let i = 0; i < this._nodes.length; i++) {
+            if (this._nodes[i].getAttribute(key) === values[1]) {
+                this._nodes[i].setAttribute(key, values[0]);
             } else {
-                node.setAttribute(key, values[1]);
+                this._nodes[i].setAttribute(key, values[1]);
             }
-        });
+        }
 
         return this;
     }
@@ -359,9 +359,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.textContent = text;
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].textContent = text;
+        }
 
         return this;
     }
@@ -382,9 +382,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.innerHTML = html;
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].innerHTML = html;
+        }
 
         return this;
     }
@@ -409,11 +409,11 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
+        for (let i = 0; i < this._nodes.length; i++) {
             for (const property in styles) {
-                node.style[property] = styles[property];
+                this._nodes[i].style[property] = styles[property];
             }
-        });
+        }
 
         return this;
     }
@@ -426,9 +426,9 @@ export default class E {
             return this;
         }
 
-        this._nodes.forEach((node) => {
-            node.offsetHeight;
-        });
+        for (let i = 0; i < this._nodes.length; i++) {
+            this._nodes[i].offsetHeight;
+        }
 
         return this;
     }
