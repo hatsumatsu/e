@@ -296,7 +296,7 @@ export default class E {
             return this;
         }
 
-        if (!key || !value) {
+        if (!key || value === undefined) {
             return this;
         }
 
