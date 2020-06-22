@@ -49,14 +49,21 @@ export default class E {
         }
 
         /**
-         * new E( {Element|NodeList} )
+         * new E( {E|NodeList|Element} )
          * creates a collection containing the passed nodes
          */
         if (typeof target === 'object') {
-            if (target.length === undefined) {
-                this._nodes = [target];
+            if (target.hasOwnProperty('_nodes')) {
+                // E
+                this._nodes = target._nodes;
             } else {
-                this._nodes = target;
+                if (target.length === undefined) {
+                    // HTMLElement
+                    this._nodes = [target];
+                } else {
+                    // NodeList
+                    this._nodes = target;
+                }
             }
         }
 
