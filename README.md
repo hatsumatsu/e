@@ -24,10 +24,11 @@ import E from @superstructure.net/e;
 new E('.my-selector');
 new E('[data-module-role="button"]');
 new E(elementOrNodeList);
-new E('<div>');
+// create element
+new E('<div></div>');
 
-// create collection and do stuff
-new E('<div>')
+// create element and do stuff
+new E('<p></p>')
   .setAttr('data-module-role', 'title')
   .setText('Groovy 🎷')
   .addClass('active')

@@ -26,15 +26,19 @@ export default class E {
         }
 
         /**
-         * new E( '<div>' )
+         * new E( '<div></div>' )
          * creates a collection with one <div> Element
          *
          * new E( '{selector}' )
          * creates a collection containing the result of querySelectorAll( '{selector}' )
          */
         if (typeof target === 'string') {
-            if (target.charAt(0) === '<' && target.charAt(target.length - 1) === '>') {
-                this._nodes = [document.createElement(target.replace(/[<>]/gi, ''))];
+            if (/^<[\s\S]+>$/.test(target)) {
+                const dom = new DOMParser().parseFromString(target, 'text/html');
+
+                if (dom && dom.body && dom.body.childNodes) {
+                    this._nodes = dom.body.childNodes;
+                }
             } else {
                 this._nodes = document.querySelectorAll(target);
             }
