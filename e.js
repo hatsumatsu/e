@@ -36,8 +36,12 @@ export default class E {
             if (/^<[\s\S]+>$/.test(target)) {
                 const dom = new DOMParser().parseFromString(target, 'text/html');
 
+                this._nodes = [];
+
                 if (dom && dom.body && dom.body.childNodes) {
-                    this._nodes = dom.body.childNodes;
+                    for (let i = 0; i < dom.body.childNodes.length; i++) {
+                        this._nodes.push(dom.body.childNodes[i].cloneNode(true));
+                    }
                 }
             } else {
                 this._nodes = document.querySelectorAll(target);
