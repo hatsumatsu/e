@@ -24,6 +24,7 @@ import E from @superstructure.net/e;
 new E('.my-selector');
 new E('[data-module-role="button"]');
 new E(elementOrNodeList);
+
 // create element
 new E('<div></div>');
 
@@ -118,7 +119,7 @@ Get inner HTML of the first collection entry;
 
 Apply styles passed as a key-value-based object. Like `{fontSize:'2rem',color:'yellow'}`.
 
-##### `nodes(index)` / `n(index)` / `get(index)`
+##### `nodes(index)` / `n(index)` / `get(index)` / `dom(index)`
 
 Get collection entry at `index`. Returns all collection entries if no index is passed.
 

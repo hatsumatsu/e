@@ -475,6 +475,10 @@ export default class E {
         return this.nodes(index);
     }
 
+    dom(index) {
+        return this.nodes(index);
+    }    
+
     get(index) {
         return this.nodes(index);
     }
