@@ -15,6 +15,9 @@ Tiny DOM manipulation helper with a familiar fluent API.
 
 `npm install @superstructure.net/e`
 
+> Note: This library comes as es6 module only.
+> If you use a transpiler like babel or swc make sure to include `/node_modules/@superstructure.net/e` in your transpiler’s config.
+
 ### Usage
 
 ```
